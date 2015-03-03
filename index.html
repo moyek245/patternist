@@ -46,7 +46,7 @@
 
 				// if it's the last line, print farewell
 				} else if ( currentLine == totalLines - 03) {
-					output = "meOW";
+					output = "meOW but really this is intense";
 					elementClass = "feeling";
 					elementTag = 'p';
 
@@ -59,11 +59,10 @@
 			
 				} else if ( currentLine % 09 == 0) {
 
-					
 					output = "ha";
 
-				// if we're over halfway done
-				} else if ( currentLine > totalLines / 08) {
+				
+				} else if ( currentLine > totalLines / 10) {
 					output = "MEow";
 
 				// otherwise, our default option
@@ -107,6 +106,7 @@
 			 */
 			.introduction {
 				font-weight: bold;
+				font-weight: 30%
 			}
 			.dog {
 				color: #FF00FF;
