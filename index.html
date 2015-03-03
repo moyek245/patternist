@@ -4,52 +4,131 @@
 	<!-- a head for all the heady/conceptual/meta stuff -->
 	<head>
 
-		<title><!-- your title goes here --></title>
+		<title>Kristen Moyer Java #3</title>
 
 		<!-- this imports p5  -->
-		<script language="javascript" type="text/javascript" src="p5/p5.min.js"></script>
-		<script language="javascript" type="text/javascript" src="p5/addons/p5.dom.js"></script>
+		<script language="javascript" type="text/javascript" src="../../p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../../../p5/addons/p5.dom.js"></script>
 
 		<!-- here's your sketch! -->
 		<script>
+		// -------------------------------------------------------------------------
 		// we're in javascript land now!
 		// (notice the different style of comments)
 
-		// here is where you declare your vars, like:
-		// var one = 1;
+		// set up our vars here
 
-	 /**
-	 * Setup - this is where you get things ready before running the loop
-	 */
+		// this variable will keep track of what line we're on
+		var currentLine = 0;
+		// this is the total number of lines
+		var totalLines = 40;
+		// this is our output
+		var output = "";
+
+
 		function setup() {
-			// this tells p5 that we are not using the
-			// `<canvas>` element (more on that later)
+			// this tells p5 that we are not using the `canvas` element
 			noCanvas();
 		}
 
-		/**
-		 * Here's the draw loop! This is where all the fun stuff happens.
-		 */
+
+		// this is fired on every new frame.
 		function draw() {
-			// this will continue to loop
+
+			// what type of element (HTML tag) will we make?
+			var elementTag = "span";
+			// add a CSS class
+			var elementClass = "";
+
+			// if we haven't reached our total number of lines
+			if(currentLine < totalLines) {
+
+				// if the current line is 0
+				if(currentLine == 0) {
+					output = "meow";
+					elementClass = "noise";
+					elementTag = 'h3';
+
+				// if it's the last line, print farewell
+				} else if ( currentLine == totalLines - 1) {
+					output = "meOW";
+					elementClass = "other-noise";
+					elementTag = 'p';
+
+				// the % operator (also known as "modulus") gives us the remainder when
+				// dividing one number into another:
+				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder
+				//
+				// so this will only be true if the current line is a multiple of 2
+				// (since then it won't have a remainder)
+				} else if ( currentLine % 5 == 0) {
+					output = "... are you there?...";
+
+				// same as above, but a multiple of three
+				// http://copypastecharacter.com/
+				} else if ( currentLine % 10 == 0) {
+
+					// found the icons using http://copypastecharacter.com
+					output = ":(";
+
+				// if we're over halfway done
+				} else if ( currentLine > totalLines / 5) {
+					output = "MEow";
+
+				// otherwise, our default option
+				} else {
+					output = "woof"
+					elementClass = "dog";
+				}
+
+				// output the result
+
+				// use p5.js `createElement` instead of console.log to output HTML
+				// `elementTag` is the HTML tag to output
+				// `output` is the contents
+				element = createElement(elementTag, output);
+
+				// add a class to the element that we can use in CSS
+				element.addClass(elementClass);
+
+				// increase the line number
+				currentLine = currentLine + 5;
+			}
 		}
 
 		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
 		</script>
-		<!-- back to HTML -->
-
 		<style>
 			body {
-				padding: 0;
-				margin: 0;
-				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 200%;
+				padding: 20px;
+				margin: 5px;
+
+				/* notice custom styles here */
+				font-size: 100%;
+				font-family: 'Garamond', 'Arial', sans-serif;
 			}
+
+			/**
+			 * Using class selector to apply CSS rules
+			 *
+			 * http://www.tizag.com/cssT/class.php
+			 */
+			.noise {
+				font-weight: bold;
+			}
+			.dog {
+				color: #FF00FF;
+			}
+			.other-noise {
+				font-style: italic;
+			}
+
 		</style>
 
 	</head>
 
-	<!-- a body for the meat/data/content -->
+	<!-- since we're using JavaScript, we can leave the body empty -->
 	<body>
 
 	</body>
