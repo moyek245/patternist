@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<h1>C H A R G E<h1>
+	
+	<br>
+	
+	<head>
+ 
+		<title>Kristen Moyer#3</title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// -------------------------------------------------------------------------
+		
+		var currentLine = 0;
+		
+		var totalLines = 4800;
+		
+		
+		var characters = [
+			"&#9822;&#9816;&#9822;", 
+			"&#9816;&#9822;", 
+			"&#9916;;", 
+			"&#9822;", 
+			"&#9822;", 
+			"&#9816;"
+
+		];
+		function setup() {
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+		// this is fired on every new frame.
+		function draw() {
+			
+			if(currentLine < totalLines) {
+				
+				if(currentLine < totalLines / 8) {
+					
+
+					index = map(
+						// our value
+						currentLine,
+						// the low value of the current range
+						1,
+						// the high value of the current range
+						totalLines/8,
+						// the low value of the new range
+						.2,
+						// the high value of the new range
+						characters.length
+					);
+
+
+				} 
+
+				else {
+					// same as above, but we are using a different value (totalLines - currentLine)
+					// and removed the comments
+					index = map(totalLines-currentLine, 0, totalLines/4, 0, characters.length);
+				}
+				
+				index = floor(index);
+				var element = createElement('a', characters[index]);
+				currentLine = currentLine + .5;
+			}
+		}
+		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				text-align: center;
+				padding: 0;
+				margin: 0;
+				
+				/* 
+				  this allows the characters to break at the end of the window,
+				  instead of wrapping accross the page
+				*/
+				word-wrap: break-word;
+				/* notice custom styles here */
+				font-size: 50%;
+				letter-spacing: 0px;
+				color: #fff;
+				background: teal;
+				font-family: 'Din', sans-serif;
+			}
+		
+			a:hover {
+				color: #F999aa;
+			}
+
+			h1 {
+				color: #F999aa;
+				font-size: 800%;
+
+			}
+		</style>
+
+	</head>
+
+
+	<body>
+
+	</body>
+
+</html>
